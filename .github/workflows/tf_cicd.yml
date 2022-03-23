@@ -1,58 +1,46 @@
-name: Terraform CI/CD
+name: OpenTofu CI/CD
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    paths: [ extra_CI_CD ] 
+    paths: [ extra_CI_CD ]
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Default configuration 
 defaults:
   run:
     shell: bash
     working-directory: extra_CI_CD
-    
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+
 jobs:
-  # This workflow contains a single job called "tf_apply"
-  tf_apply:
-    # The type of runner that the job will run on
+  tf_plan:
     runs-on: ubuntu-latest
-    # Environment variables available to the job
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      # Install terraform (latest version)
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+      - name: Setup OpenTofu
+        uses: opentofu/setup-opentofu@v1
 
-      - name: Terraform fmt
+      - name: OpenTofu fmt
         id: fmt
-        run: terraform fmt -check
+        run: tofu fmt -check
         continue-on-error: false
 
-      - name: Terraform Init
+      - name: OpenTofu Init
         id: init
-        run: terraform init
+        run: tofu init
 
-      - name: Terraform Validate
+      - name: OpenTofu Validate
         id: validate
-        run: terraform validate
+        run: tofu validate
 
-
-          
-          
-        
+      - name: OpenTofu Plan
+        id: plan
+        run: tofu plan

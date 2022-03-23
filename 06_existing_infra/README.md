@@ -14,22 +14,23 @@ You're one of the infrastructure engineers in your firm. Last week, your colleag
 > the S3 bucket "dm-academy-course-data".
 
 Your colleague completed the request. But today you are notified that the end user cannot read the contents
-of `s3://dm-academy-course-data/trees.csv`. The notification did not contain the computer generated error message or
+of `s3://dm-academy-course-data-$yourPetName/data/trees.csv` (`yourPetName` is the random id that OpenTofu generates for you via the `random_pet` resource in the `random.tf` file.). The notification did not contain the computer generated error message or
 any other more helpful information.
 
 Your job is to investigate and resolve.
 
 Before you start, brainstorm with the instructor:
+
 - what reasons can you think of that this could be happening?
 - for each reason, think of a method to verify and resolve.
 - what would you need to do as a last step to say that you're done?
 
-Then, actually start by applying the Terraform code. You can use the url in the output to open the Notebook
-Instance, or connect to it via the AWS Console. 
+Then, actually start by applying the code with `tofu apply`. You can use the url in the output to open the Notebook
+Instance, or connect to it via the AWS Console.
 
 ## Background
 
-Students get access to some Terraform codes that deploys
+Students get access to some HCL code that deploys
 
 - a notebook
 - an IAM role
@@ -40,3 +41,5 @@ Students get access to some Terraform codes that deploys
 
 They should login via the AWS Console to their Notebook and try to access a blob in S3 (either with AWS CLI, or boto3)
 and validate the claim. They should then study the error message to start resolving the issue.
+
+!To make sure you have a state of your own, change `$YOURNAME` on line 12 of the `provider.tf` file to your own name!

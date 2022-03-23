@@ -1,17 +1,16 @@
 terraform {
-  required_version = "~> 1.0"
+  required_version = ">= 1.6"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.46.0"
+      version = "~> 6.0"
     }
   }
   backend "s3" {
-    bucket         = "better-infrastructure-management-with-terraform"
-    key            = "passing_state/db/terraform.tfstate"
-    region         = "eu-west-1"
-    dynamodb_table = "app-state"
-    encrypt        = "true"
+    bucket  = "better-infrastructure-management-with-terraform"
+    key     = "passing_state/db/terraform.tfstate"
+    region  = "eu-west-1"
+    encrypt = "true"
   }
 }
 

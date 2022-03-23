@@ -16,7 +16,7 @@ student_info.tfvars
 *.png
 *.svg
 
-**/data/
+
 
 .opencode-server
 .terraform.d

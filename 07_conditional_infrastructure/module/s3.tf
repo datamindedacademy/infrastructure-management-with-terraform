@@ -1,19 +1,5 @@
 resource "aws_s3_bucket" "environment_bucket" {
   bucket = "conditional-bucket-${var.environment}"
-  acl    = "private"
-
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        kms_master_key_id = var.environment == "dev" ? "" : aws_kms_key.s3_key[0].id
-        sse_algorithm     = var.environment == "dev" ? "AES256" : "aws:kms"
-      }
-    }
-  }
-
-  versioning {
-    enabled = var.environment == "dev" ? false : true
-  }
 
   tags = {
     Name        = "my-bucket-${var.environment}"
@@ -21,11 +7,28 @@ resource "aws_s3_bucket" "environment_bucket" {
   }
 }
 
+resource "aws_s3_bucket_versioning" "environment_bucket" {
+  count  = var.environment == "dev" ? 0 : 1
+  bucket = aws_s3_bucket.environment_bucket.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "environment_bucket" {
+  bucket = aws_s3_bucket.environment_bucket.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      kms_master_key_id = var.environment == "dev" ? "" : aws_kms_key.s3_key[0].id
+      sse_algorithm     = var.environment == "dev" ? "AES256" : "aws:kms"
+    }
+  }
+}
+
 resource "aws_s3_bucket_policy" "environment_bucket_policy" {
   bucket = aws_s3_bucket.environment_bucket.id
 
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression's result to valid JSON syntax.
   policy = jsonencode({
     Version = "2012-10-17"
     Id      = "MYBUCKETPOLICY"

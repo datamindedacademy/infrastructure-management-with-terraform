@@ -31,4 +31,7 @@ We might want to upload public datasets to the bucket to train a ML model.
 - In production, we want to have a notebook instance with a GPU. For the test environment, a small t2 or t3 instance can save us
 some money.
   
-- We also want to disable root access to the Notebook in production
+- Additionally, we want to disable root access to the Notebook in production
+
+- Finally, for the production environment, we want to initiallize the notebook by cloning the `better-infrastructure-management-with-terraform` Git repository (this Git repository) for the notebook users. 
+Tip: you can do this using two methods: using the `aws_sagemaker_code_repository` resource or the `aws_sagemaker_notebook_instance_lifecycle_configuration`.

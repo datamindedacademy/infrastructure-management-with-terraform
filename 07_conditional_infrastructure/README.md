@@ -33,4 +33,5 @@ some money.
   
 - Additionally, we want to disable root access to the Notebook in production
 
-- Finally, for the production environment, we want to initiallize the notebook by cloning the `better-infrastructure-management-with-terraform` Git repository (this Git repository) for the notebook users. Tip: there is an separate Terraform resource for this requirement.
+- Finally, for the production environment, we want to initiallize the notebook by cloning the `better-infrastructure-management-with-terraform` Git repository (this Git repository) for the notebook users. 
+Tip: you can do this using two methods: using the `aws_sagemaker_code_repository` resource or the `aws_sagemaker_notebook_instance_lifecycle_configuration`.

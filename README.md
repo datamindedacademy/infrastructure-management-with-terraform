@@ -1,4 +1,4 @@
-# Better Infrastructure Management with Terraform on AWS
+# Infrastructure Management with Terraform on AWS
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/datamindedacademy/better-infrastructure-management-with-terraform)
 

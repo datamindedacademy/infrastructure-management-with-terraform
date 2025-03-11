@@ -10,7 +10,10 @@ terraform {
     // TO DO: configure this correctly after setting up the remote backend
     profile  = "academy"
     role_arn = "arn:aws:iam::338791806049:role/exercise_02_role"
-
+    bucket   = "better-infrastructure-management-with-terraform-117"
+    key      = "terraform/02_remote_backend/state.tfstate"
+    region   = "eu-west-1"
+    dynamodb_table = "terraform-training-lock-11"
   }
 }
 

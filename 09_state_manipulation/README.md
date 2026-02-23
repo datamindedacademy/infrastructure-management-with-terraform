@@ -25,9 +25,7 @@ from your state file, without destroying the actual resource.
 
 ### 2. Import existing infrastructure
 
-You've heard that blockchain is the next big thing, so you and some colleagues started playing with the new AWS Quantum Ledger Database
-(QLDB) service. You've created a Ledger by clicking a few buttons in the AWS Console (try to do this yourself! If you get stuck, ask the course assistant to help you). Turns out that the POC blockchain application you built is actually
-useful, and you're requested to incorporate the QLDB into the existing infrastructure codebase, without deleting any of the transactions in the ledger.
+Your team has been using an SQS queue to process incoming data events. The queue was originally created by a colleague via the AWS Console (try to create one yourself! If you get stuck, ask the course assistant to help you). Now you're asked to bring this queue under infrastructure-as-code management, without disrupting the messages already in the queue.
 
 ### 3. Move resources into a module
 

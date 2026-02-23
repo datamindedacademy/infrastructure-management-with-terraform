@@ -1,11 +1,11 @@
 # Provider config
 
-Terraform works with a plugin system for creating resources from different Cloud and Saas / PaaS providers.
+Terraform/OpenTofu works with a plugin system for creating resources from different Cloud and SaaS / PaaS providers.
 These plugins make calls to the APIs of the providers to create, update and delete the resources you configure
-in your Terraform code. To be able to use those APIs, however, Terraform needs access to your credentials (APIs are usually protected),
+in your HCL code. To be able to use those APIs, however, Terraform/OpenTofu needs access to your credentials (APIs are usually protected),
 as well as some other provider specific configuration, e.g. a project name, or the region in which the infrastructure should be deployed.
 
- To learn about the provider-specific configuration required to use a provider plugin, have a look at the [Terraform registry](https://registry.terraform.io/) for the provider that you want to use.
+ To learn about the provider-specific configuration required to use a provider plugin, have a look at the [OpenTofu Registry](https://opentofu.org/docs/) or the [Terraform Registry](https://registry.terraform.io/) for the provider that you want to use.
 
 ## Goal of this exercise
 

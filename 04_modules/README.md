@@ -1,8 +1,8 @@
 # Modules
 
-Terraform modules allow you to write reusable infrastructure components which you can combine like lego blocks
+Terraform/OpenTofu modules allow you to write reusable infrastructure components which you can combine like lego blocks
 to build your data platform. By grouping resources together in a module, you create abstractions that behave just like
-other Terraform resources. Sometimes such abstractions are so common or useful that people release them as open source modules
+other resources. Sometimes such abstractions are so common or useful that people release them as open source modules
 (see for example <https://github.com/cloudposse/terraform-aws-rds>)
 
 ## Goal of this exercise

@@ -7,4 +7,4 @@ making it more readable and hence more maintainable.
 ## Goal of this exercise
 
 In this exercise, you will clean up (yay!) someone else's mess. Separate the main.tf into separate files
-in order to make the terraform codebase more readable for you and your colleagues. You don't need to `apply` the resources, being able to `plan` them is good enough.
+in order to make the codebase more readable for you and your colleagues. You don't need to `apply` the resources, being able to `plan` them is good enough.

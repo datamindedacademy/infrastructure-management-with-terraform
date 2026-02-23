@@ -1,6 +1,6 @@
 # Passing information between States
 
-Sometimes you want to pass a piece of information from one Terraform state to another. Consider for example a large organization,
+Sometimes you want to pass a piece of information from one Terraform/OpenTofu state to another. Consider for example a large organization,
 which works in multiple teams; one team might be responsible for setting up the networking configuration (VPC, subnets, security groups, VPC endpoints, ...),
 and another might build a data processing platform on top of that base infrastructure (e.g. an EMR or Kubernetes cluster).
 When deploying their infrastructure, the team working on the processing platform will need as inputs the VPC and subnet ids

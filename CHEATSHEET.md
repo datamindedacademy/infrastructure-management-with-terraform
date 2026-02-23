@@ -1,6 +1,6 @@
 # Cheat sheet
 
-This cheatsheet contains the most commonly used Hashicorp Configuration Language (HCL) syntax, which might come in handy during the exercises.
+This cheatsheet contains the most commonly used Hashicorp Configuration Language (HCL) syntax, which might come in handy during the exercises. HCL is shared between Terraform and OpenTofu.
 
 ## Resources, data sources and modules
 
@@ -14,7 +14,7 @@ resource "cloud_resource" "my_resource" {
 }
 ```
 
-Here you are creating an instance of a `cloud_resource` type resource (which should be documented in a provider doc), and you give it the name `my_resource` which you can use to refer to this instance in other parts of your code. Resources are namespaced by their type (note that this is an important difference with other Terraform types!). You can refer to an attribute of a resource (to configure another resource, or to use an `output`, see below) as follows:
+Here you are creating an instance of a `cloud_resource` type resource (which should be documented in a provider doc), and you give it the name `my_resource` which you can use to refer to this instance in other parts of your code. Resources are namespaced by their type (note that this is an important difference with other Terraform/OpenTofu types!). You can refer to an attribute of a resource (to configure another resource, or to use an `output`, see below) as follows:
 
 `cloud_resource.my_resource.property`
 
@@ -22,7 +22,7 @@ This resolves into the `attribute` attribute of the `cloud_resource` type that y
 
 ### Data sources
 
-Note that data sources, like resources, are objects that have attributes that contain the data you are likely interested in. As for resources, you can find the list of attributes of a data source in its [Terraform registry](https://registry.terraform.io/) entry.
+Note that data sources, like resources, are objects that have attributes that contain the data you are likely interested in. As for resources, you can find the list of attributes of a data source in the [OpenTofu Registry](https://opentofu.org/docs/) or [Terraform Registry](https://registry.terraform.io/).
 
 ```terraform
 data "cloud_data_source" "my_data_source" {
@@ -30,7 +30,7 @@ data "cloud_data_source" "my_data_source" {
 }
 ```
 
-Data sources have their own namespace, meaning that you can reference them as follows: `data.cloud_data_source.my_data_source.property`, which extracts the `property` attribute of the `cloud_data_source` that is known to Terraform as `my_data_source`.
+Data sources have their own namespace, meaning that you can reference them as follows: `data.cloud_data_source.my_data_source.property`, which extracts the `property` attribute of the `cloud_data_source` that is known to Terraform/OpenTofu as `my_data_source`.
 
 ### Modules
 
@@ -62,7 +62,7 @@ variable "my_variable" {
 }
 ```
 
-They can be referenced via the `var` namespace as follows: `var.my_variable`. Arguments such as `type` and `default` are optional. For a complete list of (optional) variable arguments, have a look at the [official docs](https://www.terraform.io/docs/language/values/variables.html).  
+They can be referenced via the `var` namespace as follows: `var.my_variable`. Arguments such as `type` and `default` are optional. For a complete list of (optional) variable arguments, have a look at the [official docs](https://opentofu.org/docs/language/values/variables/).
 
 ### Locals
 
@@ -87,7 +87,7 @@ output "my_output" {
 }
 ```
 
-For root modules (i.e. the directory in which you run `terraform init/plan/apply`), the output values are printed to `stdout`. For nested modules you can refer to the output of that modules as e.g. `module.my_module.my_output`.
+For root modules (i.e. the directory in which you run `tofu init/plan/apply`), the output values are printed to `stdout`. For nested modules you can refer to the output of that modules as e.g. `module.my_module.my_output`.
 
 ---
 
@@ -131,15 +131,15 @@ resource "cloud_resource" "my_resource" {
 You can create new iterables (lists, sets, objects, maps) by iterating over another iterable with the `for` keyword. E.g.
 `[for s in var.list : upper(s)]` creates a new list by uppercasing the strings `s` in the variable `list`.
 
-For other use cases, have a look at the official [HCL docs](https://www.terraform.io/docs/language/expressions/for.html).
+For other use cases, have a look at the official [HCL docs](https://opentofu.org/docs/language/expressions/for/).
 
 ---
 
 ## Conditional expressions
 
-Terraform allows you to conditionally define or instantiate things with its ternary operator. The expression `condition? true_val: false_val` evaluates to `true_val` if `condition` is an expression that evaluates to `true`, otherwise it evaluates to `false_val`.
+Terraform/OpenTofu allows you to conditionally define or instantiate things with its ternary operator. The expression `condition? true_val: false_val` evaluates to `true_val` if `condition` is an expression that evaluates to `true`, otherwise it evaluates to `false_val`.
 
-A very common usage pattern of the ternary operator in terraform is to combine it with the count meta-argument to optionally instantiate a resource/data source/module based on some `condition`:
+A very common usage pattern of the ternary operator is to combine it with the count meta-argument to optionally instantiate a resource/data source/module based on some `condition`:
 
 ```terraform
 resource "cloud_resource" "my_resource" {

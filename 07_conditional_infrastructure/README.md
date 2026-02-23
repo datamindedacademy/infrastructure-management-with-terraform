@@ -7,7 +7,7 @@ deploy to production that nothing will break.
 Sometimes, however, you might want to deploy only a part of your infrastructure,
 or be a little more frugal on the amount of resources you allocate to a certain environment.
 
-Terraform allows you to conditionally deploy infrastructure with its ternary conditional operator:
+Terraform/OpenTofu allows you to conditionally deploy infrastructure with its ternary conditional operator:
 
 `condition ? value_if_true : value_if_false`
 

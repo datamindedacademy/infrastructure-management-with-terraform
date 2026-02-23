@@ -5,5 +5,7 @@
     "vscode": {
       "extensions": ["hashicorp.terraform"]
     }
-  }
+  },
+
+  "postCreateCommand": "echo \"alias t='tofu'\" >> ~/.bashrc && echo \"alias t='tofu'\" >> ~/.zshrc"
 }

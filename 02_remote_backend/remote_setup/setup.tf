@@ -1,4 +1,4 @@
-# This code is only required if you want to setup your own terraform state S3 bucket and DynamoDB locking table
+# This code is only required if you want to setup your own terraform state S3 bucket
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "better-infrastructure-management-with-terraform-${random_integer.student_id.result}"
 }
@@ -18,15 +18,6 @@ resource "aws_s3_bucket_versioning" "versioning_config" {
   versioning_configuration {
     status = "Enabled"
   }
-}
-
-resource "aws_dynamodb_table" "terraform_state_lock" {
-  name           = "terraform-training-lock-${random_integer.student_id.result}"
-  read_capacity  = 1
-  write_capacity = 1
-  hash_key       = "LockID"
-
-  // TO DO: complete this resource block!
 }
 
 resource "random_integer" "student_id" {

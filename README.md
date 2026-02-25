@@ -1,6 +1,6 @@
 # Infrastructure Management with OpenTofu on AWS
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/datamindedacademy/better-infrastructure-management-with-terraform)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/datamindedacademy/infrastructure-management-with-terraform)
 
 ## Getting started
 

@@ -1,4 +1,4 @@
-# Infrastructure Management with OpenTofu on AWS
+# Infrastructure Management with Terraform/OpenTofu on AWS
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/datamindedacademy/infrastructure-management-with-terraform)
 
@@ -6,7 +6,7 @@
 
 You can do the exercises either on your local machine with your IDE of choice, or use a preconfigured GitHub Codespaces cloud development environment (see below). If you'd like to use Codespaces, you can skip the OpenTofu installation step below.
 
-### Install OpenTofu
+### Install Terraform/OpenTofu
 
 [OpenTofu](https://opentofu.org/) is an open-source fork of Terraform that is fully compatible with existing Terraform code and providers. It is the recommended tool for this course.
 

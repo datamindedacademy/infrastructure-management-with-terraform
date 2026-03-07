@@ -1,12 +1,12 @@
 resource "aws_vpc" "main" {
-  cidr_block           = "10.0.0.0/24"
+  cidr_block           = "10.${var.student_id}.0.0/24"
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
 resource "aws_subnet" "main" {
   vpc_id                  = aws_vpc.main.id
-  cidr_block              = "10.0.0.0/28"
+  cidr_block              = "10.${var.student_id}.0.0/28"
   map_public_ip_on_launch = false
 }
 
@@ -18,6 +18,16 @@ resource "aws_vpc_endpoint" "s3" {
     Version = "2012-10-17"
     Id      = "EndpointPolicy"
     Statement = [
+      {
+        Effect    = "Allow",
+        Principal = "*"
+        Action = [
+          "s3:ListAllMyBuckets",
+        ],
+        Resource = [
+          "arn:aws:s3:::*",
+        ]
+      },
       {
         Effect    = "Allow",
         Principal = "*"

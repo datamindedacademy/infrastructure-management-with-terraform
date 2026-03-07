@@ -12,5 +12,5 @@ data "aws_ssm_parameter" "subnet_id" {
 }
 
 data "aws_ssm_parameter" "security_group_id" {
-  name = "/terraform_workshop/notebook_security_group_id"
+  name = "/terraform_workshop/security_group_id"
 }

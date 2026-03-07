@@ -3,11 +3,11 @@ locals {
 }
 
 data "aws_ssm_parameter" "vpc_id" {
-  name = "/terraform_workshop/notebook_vpc_id"
+  name = "/terraform_training/vpc_id"
 }
 
 resource "aws_security_group" "allow_tls" {
-  name        = "allow_tls-${random_pet.name.id}"
+  name        = "allow_tls"
   description = "Allow TLS inbound traffic"
   vpc_id      = data.aws_ssm_parameter.vpc_id.value
 
@@ -29,8 +29,4 @@ resource "aws_security_group" "allow_tls" {
   tags = {
     Name = "allow_tls"
   }
-}
-
-resource "random_pet" "name" {
-  length = 2
 }

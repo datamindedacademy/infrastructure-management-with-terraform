@@ -1,8 +1,7 @@
 resource "aws_sns_topic" "user_updates" {
-  name   = "user-updates-topic"
-  region = "eu-west-1"
+  name = "user-updates-topic"
 }
 
-output "sns_topic_arn" {
-  value = aws_sns_topic.user_updates.arn
+output "sns_topic_owner" {
+  value = aws_sns_topic.user_updates.owner
 }

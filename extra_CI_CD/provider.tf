@@ -10,12 +10,8 @@ terraform {
     bucket  = "better-infrastructure-management-with-terraform"
     key     = "cicd/terraform.tfstate"
     encrypt = "true"
-    region  = "eu-west-1"
   }
 }
 
 # Configure the AWS Provider
-provider "aws" {
-  region = "eu-west-1"
-}
-
+provider "aws" {}

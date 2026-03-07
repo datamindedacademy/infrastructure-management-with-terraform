@@ -6,13 +6,18 @@ terraform {
       version = "~> 6.0"
     }
   }
+  backend "s3" {
+    bucket  = "better-infrastructure-management-with-terraform"
+    key     = "passing_state/db/terraform.tfstate"
+    region  = "eu-west-1"
+    encrypt = "true"
+  }
 }
 
 # Configure the AWS Provider
 provider "aws" {
   region  = "eu-west-1"
   profile = "academy"
-  assume_role {
-    role_arn = "arn:aws:iam::338791806049:role/exercise_08_role"
-  }
 }
+
+

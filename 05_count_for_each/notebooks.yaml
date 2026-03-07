@@ -1,0 +1,20 @@
+Alice:
+  type: "ml.t2.medium"
+  ip: "1.1.1.1"
+
+Bob:
+  type: "ml.p2.xlarge"
+  ip: "1.1.1.2"
+
+Chris:
+  type: "ml.t2.medium"
+  ip: "1.1.1.3"
+
+Diana:
+  type: "ml.t3.medium"
+  ip: "1.1.1.4"
+
+Erin:
+  type: "ml.t2.medium"
+  ip: "1.1.1.5"
+

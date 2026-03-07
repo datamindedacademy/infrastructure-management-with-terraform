@@ -7,9 +7,10 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "better-infrastructure-management-with-terraform"
-    key    = "state_manipulation/terraform.tfstate"
-    region = "eu-west-1"
+    bucket  = "better-infrastructure-management-with-terraform"
+    key     = "passing_state/app/terraform.tfstate"
+    region  = "eu-west-1"
+    encrypt = "true"
   }
 }
 

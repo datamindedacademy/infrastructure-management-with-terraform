@@ -20,9 +20,9 @@ You can reuse some existing infrastructure (a VPC, subnet, security group and IA
 
 - we want to create and manage a KMS key to encrypt the data in our bucket *only* in production. For the test environment,
 the AWS managed S3 key (or even AES256 encryption) will do just fine.
-  
+
 - we want to enable versioning of S3 objects *only* in the production environment
-  
+
 - the production S3 bucket should only be accessible from the VPC subnets. For the test environment, access control can be less strict.
 We might want to upload public datasets to the bucket to train a ML model.
 
@@ -30,5 +30,5 @@ We might want to upload public datasets to the bucket to train a ML model.
 
 - In production, we want to have a notebook instance with a GPU. For the test environment, a small t2 or t3 instance can save us
 some money.
-  
+
 - We also want to disable root access to the Notebook in production

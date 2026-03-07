@@ -1,9 +1,9 @@
 terraform {
-  required_version = ">= 1.6"
+  required_version = "~> 1.0"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 6.0"
+      version = "~> 3.46.0"
     }
   }
   backend "s3" {
@@ -17,13 +17,10 @@ terraform {
 provider "aws" {
   region  = "eu-west-1"
   profile = "academy"
-  assume_role {
-    role_arn = "arn:aws:iam::338791806049:role/exercise_03_role"
-  }
 }
 
 resource "aws_iam_role" "notebook_role" {
-  name = "sagemaker_notebook_role-${var.student_name}"
+  name = "test_role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -70,7 +67,8 @@ variable "student_name" {
   type = string
 }
 resource "aws_s3_bucket" "notebook_bucket" {
-  bucket = "better-infrastructure-management-with-terraform-${var.student_name}"
+  bucket = "better-infrastructure-management-sagemaker-notebook-bucket-${var.student_name}"
+  acl    = "private"
 
   tags = {
     Name        = "My bucket"
@@ -131,15 +129,18 @@ resource "aws_security_group" "allow_tls" {
   }
 }
 
+variable "student_id" {
+  type = string
+}
 resource "aws_vpc" "main" {
-  cidr_block           = "10.0.0.0/24"
+  cidr_block           = "10.${var.student_id}.0.0/24"
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
 resource "aws_subnet" "main" {
   vpc_id                  = aws_vpc.main.id
-  cidr_block              = "10.0.0.0/28"
+  cidr_block              = "10.${var.student_id}.0.0/28"
   map_public_ip_on_launch = false
 }
 

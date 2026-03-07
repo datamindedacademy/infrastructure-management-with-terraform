@@ -18,9 +18,9 @@ This CI/CD pipeline should consist of four steps:
 3. Pull in the required providers, initialize modules (if any) and configure the remote backend
 4. Automatically apply your code
 
-You don't have to provide any AWS credentials or profiles; your instructor already configured those as 
+You don't have to provide any AWS credentials or profiles; your instructor already configured those as
 GitHub actions secrets for the remote repository. The CI/CD pipeline will use those secrets as environment variables,
-which Terraform/OpenTofu automatically picks up. 
+which Terraform/OpenTofu automatically picks up.
 
 **! IMPORTANT !**
 

@@ -1,11 +1,12 @@
 resource "aws_s3_bucket" "notebook_bucket" {
-  bucket = "better-infrastructure-management-with-terraform-${random_pet.name.id}"
+  bucket = "dataminded-academy-course-data-${var.student_name}"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
 }
 
-resource "aws_s3_bucket_acl" "bucket_acl" {
-  bucket = aws_s3_bucket.notebook_bucket.id
-  acl    = "private"
-}
 resource "aws_s3_object" "object" {
   bucket = aws_s3_bucket.notebook_bucket.id
   key    = "data/trees.csv"
@@ -35,6 +36,11 @@ resource "aws_s3_bucket_policy" "notebook_bucket_policy" {
           aws_s3_bucket.notebook_bucket.arn,
           "${aws_s3_bucket.notebook_bucket.arn}/*"
         ]
+        Condition = {
+          StringNotEquals = {
+            "aws:SourceVpc" = aws_vpc.main.id
+          },
+        }
       },
     ]
   })

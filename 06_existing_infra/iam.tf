@@ -1,5 +1,6 @@
+# TODO: create IAM role which will be assumed by Notebook instance to access S3 bucket
 resource "aws_iam_role" "notebook_role" {
-  name = "sagemaker_notebook_role_${random_pet.name.id}"
+  name = "sagemaker_notebook_role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -29,6 +30,16 @@ resource "aws_iam_role" "notebook_role" {
           Effect = "Allow"
           Resource = [
           "arn:aws:s3:::*"]
+        },
+        {
+          Action = [
+            "s3:*Object",
+          ]
+          Effect = "Allow"
+          Resource = [
+            aws_s3_bucket.notebook_bucket.arn,
+            "${aws_s3_bucket.notebook_bucket.arn}/*",
+          ]
         },
       ]
     })

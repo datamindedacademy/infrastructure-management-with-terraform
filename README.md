@@ -1,5 +1,6 @@
 # Infrastructure Management with Terraform/OpenTofu on AWS
 
+[![Dataminded Academy](https://raw.githubusercontent.com/datamindedacademy/branding/main/assets/badge.svg)](https://github.com/datamindedacademy)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/datamindedacademy/infrastructure-management-with-terraform)
 
 ## Getting started

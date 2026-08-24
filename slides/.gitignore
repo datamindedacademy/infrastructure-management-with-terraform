@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*-export.pdf
+
+# root .gitignore excludes *.png/*.svg; deck figures are needed
+!public/images/*.png
+!public/images/*.svg
+!theme/assets/*.png
+!theme/assets/*.svg

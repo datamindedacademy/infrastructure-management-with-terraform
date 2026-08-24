@@ -1,0 +1,83 @@
+/* Deck-wide figure sizing. Slidev auto-loads style.css next to the entry deck,
+   so these apply globally — a <style> block inside a slide would not. */
+.fig {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  width: auto;
+  max-height: 300px;
+}
+.fig-xl { max-height: 380px; }   /* image is the whole slide */
+.fig-sm { max-height: 185px; }   /* image shares the slide with content */
+.fig-xs { max-height: 105px; }   /* decorative, content dominates */
+
+.fig-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.fig-row img { max-height: 76px; width: auto; }
+
+.credit {
+  text-align: center;
+  font-size: 11px;
+  opacity: 0.6;
+  margin-top: 6px;
+}
+
+/* Emoji sizing ------------------------------------------------------------
+   DM Sans and El Messiri have a tall x-height, so system emoji render small
+   beside them. Scaling them with an @font-face size-adjust made them resize
+   visibly on every slide transition, so they are wrapped in <span class="emoji">
+   instead: a plain font-size bump, resolved at first paint, nothing to swap. */
+.emoji {
+  font-size: 1.3em;
+  line-height: 1;
+  vertical-align: -0.08em;
+}
+
+/* Vertical centring -------------------------------------------------------
+   ::after alone parks content just under the title — that is the default, and
+   what the structured blocks (DmImpact, DmComparison, DmSteps) keep. Adding a
+   second auto margin on the first child splits the slack in two and centres
+   it; that is applied only to running text, code and figures.
+   :last-child cannot serve as the lower half — Vue leaves a trailing anchor
+   after <v-click>, so it misses and the slack all piles up on top. */
+.slidev-layout .dm-default-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.dm-default-body::after { content: ""; margin-top: auto; }
+.dm-default-body > h1:first-child + :is(p, ul, ol, blockquote, pre, img),
+.dm-default-body > :first-child:is(p, ul, ol, blockquote, pre, img) { margin-top: auto; }
+
+/* Same inside columns. The body must fill what is left *under the header
+   pill*, not the whole column: height:100% measured against .dm-col, so on
+   any column with a header the box hung below the slide and the text centred
+   against it, landing too low. Let .dm-col lay out as a column and the body
+   grow into the remainder instead. */
+.dm-default-body > .dm-columns { flex: 1 1 auto; min-height: 0; }
+.dm-col { display: flex; flex-direction: column; }
+.dm-col-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.dm-col-body::after { content: ""; margin-top: auto; }
+.dm-col-body > :first-child:is(p, ul, ol, blockquote, pre, img) { margin-top: auto; }
+
+/* logos in a DmComparison column header */
+.cmp-logos { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.cmp-logos img { height: 24px; width: auto; }
+
+/* .cmp-compact: for a comparison that has both logos in the header and four
+   body rows, which together overflow the slide at the component's defaults. */
+.cmp-compact.dm-cmp { gap: 8px; }
+.dm-cmp.cmp-compact .dm-cmp-cell { padding: 7px 12px; font-size: 13px; line-height: 1.35; }
+.dm-cmp.cmp-compact .dm-cmp-rowlabel { padding: 6px; }
+.dm-cmp.cmp-compact .dm-cmp-colhead { padding-bottom: 4px; font-size: 15px; }
